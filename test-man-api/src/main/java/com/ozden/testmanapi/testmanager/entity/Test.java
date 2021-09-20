@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Table(name = "tests")
 public class Test {
 
+    // TODO: consider using UUID
     @GeneratedValue
     @Id
     private Long id;

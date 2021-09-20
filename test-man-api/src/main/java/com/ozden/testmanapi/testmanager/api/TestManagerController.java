@@ -1,10 +1,7 @@
 package com.ozden.testmanapi.testmanager.api;
 
 import com.ozden.testmanapi.testmanager.entity.Test;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +17,11 @@ public class TestManagerController {
                 new Test(1L, "Test should run 1", "Passed", ""),
                 new Test(2L, "Test should run 2", "Failed", "")
         );
+    }
+
+    // TODO: handle validations, id, status etc
+    @PatchMapping("/{testId}")
+    public Test updateTest(@PathVariable Long testId, @RequestBody Test test) {
+        return test;
     }
 }
