@@ -1,19 +1,20 @@
 import React from 'react';
 import './App.css';
-import Button from 'react-bootstrap/Button';
 
 import Container from 'react-bootstrap/Container';
+import TestPreviewList from "./components/TestPreviewList";
+import TestDetail from "./models/TestDetail";
 
 
 const App: React.FC = () => {
+    const testDetails = [
+        new TestDetail(1, "New test name 1", "Passed", ""),
+        new TestDetail(2, "New test name 2", "Passed", ""),
+        new TestDetail(3, "New test name 3", "Passed", ""),
+    ];
     return (
         <Container className="p-5">
-            <h2>Buttons</h2>
-            <div className="p-1">
-                <Button variant="primary" className="mr-1">
-                    Primary
-                </Button>
-            </div>
+            <TestPreviewList testDetails={testDetails}></TestPreviewList>
         </Container>
     );
 };
