@@ -24,7 +24,7 @@ const App: React.FC = () => {
     }, []);
     return (
         <Container className="p-5">
-            <TestPreviewList testDetails={allTests}></TestPreviewList>
+            <TestPreviewList testDetails={allTests} onTestDataChange={loadTestDetails}></TestPreviewList>
         </Container>
     );
 };

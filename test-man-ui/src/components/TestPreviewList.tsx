@@ -5,9 +5,10 @@ import TestPreview from "./TestPreview";
 
 interface TestPreviewListProps {
     testDetails: TestDetail[];
+    onTestDataChange: () => void;
 }
 
-const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails}: TestPreviewListProps) => {
+const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDataChange}: TestPreviewListProps) => {
     const [details, setDetails] = useState<any>([]);
     let items: any[] = [];
 
@@ -21,9 +22,21 @@ const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails}: TestPrev
     }, [testDetails]);
 
     const updateTestStatus = (testDetail: TestDetail, newStatus: string) => {
-        console.log("Inside");
-        console.log(testDetail);
-        console.log(newStatus);
+        const newTestDetail = {...testDetail};
+        newTestDetail.status = newStatus;
+        submitStatus(testDetail);
+    }
+
+    const submitStatus = (testDetail: TestDetail) => {
+        const requestOptions = {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({status: testDetail.status})
+        };
+        // TODO: URL from configs
+        fetch(`http://localhost:8080/api/v1/tests/${testDetail.id}`, requestOptions)
+            .then(response => response.json())
+            .then(data => onTestDataChange());
     }
 
     return (

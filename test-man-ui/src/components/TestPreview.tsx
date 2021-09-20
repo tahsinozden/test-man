@@ -3,8 +3,8 @@ import {Col, Form, Row} from "react-bootstrap";
 import TestDetail from "../models/TestDetail";
 
 interface TestPreviewProps {
-    testDetail: TestDetail,
-    onStatusSelect: (testDetail: TestDetail, newStatus: string) => void
+    testDetail: TestDetail;
+    onStatusSelect: (testDetail: TestDetail, newStatus: string) => void;
 }
 
 const TestPreview: React.FC<TestPreviewProps> = ({testDetail, onStatusSelect}: TestPreviewProps) => {
