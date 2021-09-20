@@ -1,20 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 import Container from 'react-bootstrap/Container';
 import TestPreviewList from "./components/TestPreviewList";
-import TestDetail from "./models/TestDetail";
 
 
 const App: React.FC = () => {
-    const testDetails = [
-        new TestDetail(1, "New test name 1", "Passed", ""),
-        new TestDetail(2, "New test name 2", "Passed", ""),
-        new TestDetail(3, "New test name 3", "Passed", ""),
-    ];
+    const [allTests, setAllTests] = useState([]);
+
+    const loadTestDetails = () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        };
+        // TODO: get URL from configs
+        fetch(`http://localhost:8080/api/v1/tests`, requestOptions)
+            .then(response => response.json())
+            .then(data => setAllTests(data));
+    }
+
+    useEffect(() => {
+        loadTestDetails()
+    }, []);
     return (
         <Container className="p-5">
-            <TestPreviewList testDetails={testDetails}></TestPreviewList>
+            <TestPreviewList testDetails={allTests}></TestPreviewList>
         </Container>
     );
 };
