@@ -24,4 +24,11 @@ public class TestManagerController {
     public Test updateTest(@PathVariable Long testId, @RequestBody Test test) {
         return test;
     }
+
+    // TODO: handle validations, id, status etc
+    @PostMapping
+    public Test createTest(@RequestBody Test test) {
+        return test;
+    }
+
 }
