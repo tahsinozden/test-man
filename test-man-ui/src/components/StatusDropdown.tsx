@@ -16,7 +16,7 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
                 <Dropdown.Item as="label" eventKey={status} key={status}>{status}</Dropdown.Item>
             );
         }
-    }, []);
+    });
 
     return (
         <>

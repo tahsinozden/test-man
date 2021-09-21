@@ -19,7 +19,7 @@ const TestManager: React.FC = () => {
     }
 
     useEffect(() => {
-        loadTestDetails()
+        loadTestDetails();
     }, []);
 
     return (
