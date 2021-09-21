@@ -27,7 +27,7 @@ const TestManager: React.FC = () => {
             <Container className="p-3">
                 <Row>
                     <Col>
-                        <CreateTestModal/>
+                        <CreateTestModal onNewTestCreated={loadTestDetails}/>
                     </Col>
                 </Row>
             </Container>

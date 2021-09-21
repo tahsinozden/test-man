@@ -2,11 +2,20 @@ import {Button, Modal} from "react-bootstrap";
 import React, {useState} from "react";
 import CreateTest from "./CreateTest";
 
-const CreateTestModal: React.FC = () => {
+interface CreateTestModalProps {
+    onNewTestCreated: () => void;
+}
+
+const CreateTestModal: React.FC<CreateTestModalProps> = ({onNewTestCreated}: CreateTestModalProps) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleTestCreated = () => {
+        onNewTestCreated();
+        handleClose();
+    }
 
     return (
         <>
@@ -24,7 +33,7 @@ const CreateTestModal: React.FC = () => {
                     <Modal.Title>Create a new test</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <CreateTest/>
+                    <CreateTest onNewTestCreated={handleTestCreated}/>
                 </Modal.Body>
             </Modal>
         </>

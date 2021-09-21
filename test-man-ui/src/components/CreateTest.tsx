@@ -4,7 +4,11 @@ import {Button, Form} from "react-bootstrap";
 import StatusDropdown from "./StatusDropdown";
 import TestStatus from "../models/TestStatus";
 
-const CreateTest: React.FC = () => {
+interface CreateTestProps {
+    onNewTestCreated: () => void;
+}
+
+const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestProps) => {
     const [selectedStatus, setSelectedStatus] = useState(TestStatus.Undefined.toString());
     const [testDetail, setTestDetail] = useState(new TestDetail());
 
@@ -24,7 +28,8 @@ const CreateTest: React.FC = () => {
         };
         // TODO: URL from configs
         fetch(`http://localhost:8080/api/v1/tests`, requestOptions)
-            .then(response => response.json());
+            .then(response => response.json())
+            .then(data => onNewTestCreated());
     }
 
     return (
