@@ -15,7 +15,7 @@ const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDat
     useEffect(() => {
         for (let i in testDetails) {
             items.push(
-                <TestPreview key={i} testDetail={testDetails[i]} onStatusSelect={updateTestStatus}></TestPreview>
+                <TestPreview key={i} testDetail={testDetails[i]} onStatusSelect={updateTestStatus}/>
             )
             setDetails(items);
         }

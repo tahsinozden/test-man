@@ -23,9 +23,9 @@ const TestPreview: React.FC<TestPreviewProps> = ({testDetail, onStatusSelect}: T
                         <StatusDropdown currentStatus={testDetail.status || TestStatus.Undefined.toString()}
                                         onStatusSelect={(newStatus) => handleStatusSelect(testDetail, newStatus)}/>
                     </Col>
-                    <Col></Col>
-                    <Col></Col>
-                    <Col></Col>
+                    <Col/>
+                    <Col/>
+                    <Col/>
                 </Row>
             </Form>
         </>
