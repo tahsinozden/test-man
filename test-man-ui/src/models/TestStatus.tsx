@@ -1,5 +1,5 @@
 enum TestStatus {
-    Undefined
+    Undefined = "Undefined"
 }
 
 export default TestStatus;
