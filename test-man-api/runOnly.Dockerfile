@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:11
 
 WORKDIR /app
 COPY target/test-man-api.jar .
