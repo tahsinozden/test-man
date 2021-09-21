@@ -1,6 +1,7 @@
 import React from "react";
 import {Col, Form, Row} from "react-bootstrap";
 import TestDetail from "../models/TestDetail";
+import StatusDropdown from "./StatusDropdown";
 
 interface TestPreviewProps {
     testDetail: TestDetail;
@@ -8,43 +9,25 @@ interface TestPreviewProps {
 }
 
 const TestPreview: React.FC<TestPreviewProps> = ({testDetail, onStatusSelect}: TestPreviewProps) => {
-
-    const statuses = new Set(["Passed", "Failed"]);
-    const buildStatusOptions = (status: string) => {
-        const options = [];
-        const statusOption = status ? status : "Undefined";
-        options.push(<option>{statusOption}</option>)
-        return (<option></option>);
-    };
+    const handleStatusSelect = (testDetail: TestDetail, newStatus: string) => {
+        onStatusSelect(testDetail, newStatus);
+    }
 
     return (
-        <div>
+        <>
             <Form>
                 <Row>
                     <Col>{testDetail.name}</Col>
                     <Col>
-                        {/*TODO: find default value in select*/}
-                        <Form.Control
-                            as="select"
-                            value="new"
-                            onChange={e => {
-                                const newStatus = e.target.value;
-                                onStatusSelect(testDetail, newStatus);
-                            }}
-                        >
-                            <option>{testDetail.status}</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </Form.Control>
+                        <StatusDropdown currentStatus={testDetail.status || "Undefined"}
+                                        onStatusSelect={(newStatus) => handleStatusSelect(testDetail, newStatus)}/>
                     </Col>
-                    <Col></Col>
                     <Col></Col>
                     <Col></Col>
                     <Col></Col>
                 </Row>
             </Form>
-        </div>
+        </>
 
 
     );
