@@ -17,7 +17,6 @@ public class TestApiView {
     @NotNull(message = "name cannot be null", groups = {OnCreate.class})
     private String name;
 
-    @NotNull(message = "status cannot be null", groups = {OnCreate.class})
     private String status;
     private String description;
 }
