@@ -3,7 +3,8 @@ import './App.css';
 
 import Container from 'react-bootstrap/Container';
 import TestPreviewList from "./components/TestPreviewList";
-import CreateTest from "./components/CreateTest";
+import CreateTestModal from "./components/CreateTestModal";
+import {Col, Row} from "react-bootstrap";
 
 
 const App: React.FC = () => {
@@ -24,10 +25,20 @@ const App: React.FC = () => {
         loadTestDetails()
     }, []);
     return (
-        <Container className="p-5">
-            <CreateTest></CreateTest>
-            <TestPreviewList testDetails={allTests} onTestDataChange={loadTestDetails}></TestPreviewList>
-        </Container>
+        <>
+            <Container className="p-3">
+                <Row>
+                    <Col>
+                        <CreateTestModal/>
+                    </Col>
+                </Row>
+            </Container>
+            <Container className="p-3">
+                <Row>
+                    <TestPreviewList testDetails={allTests} onTestDataChange={loadTestDetails}/>
+                </Row>
+            </Container>
+        </>
     );
 };
 
