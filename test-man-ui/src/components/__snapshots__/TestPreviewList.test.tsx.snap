@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there are no tests 1`] = `
+<div
+  className="container"
+/>
+`;
+
+exports[`renders correctly when there are some tests 1`] = `
+<div
+  className="container"
+/>
+`;
