@@ -7,6 +7,7 @@ import com.ozden.testmanapi.testmanager.api.mapper.TestEntityToTestApiViewMapper
 import com.ozden.testmanapi.testmanager.api.validations.group.OnCreate;
 import com.ozden.testmanapi.testmanager.api.validations.group.OnUpdate;
 import com.ozden.testmanapi.testmanager.entity.TestEntity;
+import com.ozden.testmanapi.testmanager.entity.TestStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 // TODO: make the config in general place
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -45,5 +47,12 @@ public class TestManagerController {
     public TestApiView createTest(@RequestBody @Valid TestApiView testApiView) {
         TestEntity testEntity = testApiViewToTestEntityMapper.apply(testApiView);
         return testEntityToTestApiViewMapper.apply(testManagerService.saveTest(testEntity));
+    }
+
+    @GetMapping("/statuses")
+    public List<String> getAvailableStatuses() {
+        return Stream.of(TestStatus.values())
+                .map(TestStatus::getValue)
+                .collect(Collectors.toList());
     }
 }

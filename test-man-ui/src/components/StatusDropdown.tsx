@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import TestStatus from "../models/TestStatus";
+import TestManagerApi from "../api/TestManagerApi";
 
 interface StatusDropDownProps {
     currentStatus: string;
@@ -8,9 +9,14 @@ interface StatusDropDownProps {
 }
 
 const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusSelect}: StatusDropDownProps) => {
-    const statuses = ["Passed", "Failed", TestStatus.Undefined.toString()];
+    const [statuses, setStatuses] = useState<string[]>([]);
     const statusDropdownItems: any = [];
     const [selected, setSelected] = useState(TestStatus.Undefined.toString());
+    const testManagerApi = new TestManagerApi();
+
+    useEffect(() => {
+        testManagerApi.getAllStatuses().then(data => setStatuses(data));
+    }, []);
 
     useEffect(() => {
         for (let status of statuses) {
