@@ -6,9 +6,17 @@ import TestStatus from "../models/TestStatus";
 
 const CreateTest: React.FC = () => {
     const [selectedStatus, setSelectedStatus] = useState(TestStatus.Undefined.toString());
-    const testDetail: TestDetail = new TestDetail();
+    const [testDetail, setTestDetail] = useState(new TestDetail());
+
+    const handleStatusChange = (newStatus: string) => {
+        setSelectedStatus(newStatus);
+        testDetail.status = newStatus;
+        setTestDetail(testDetail);
+    };
+
     const createNewTest = (testDetail: TestDetail, e: any) => {
         e.preventDefault();
+        console.log(testDetail);
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -24,19 +32,21 @@ const CreateTest: React.FC = () => {
             <Form.Group className="mb-3" controlId="testCreate.ControlInput1">
                 <Form.Label>Test Name</Form.Label>
                 <Form.Control type="text" placeholder="New test name" onChange={e => {
-                    testDetail.name = e.target.value
+                    testDetail.name = e.target.value;
+                    setTestDetail(testDetail);
                 }}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="testCreate.ControlTextarea1">
                 <Form.Label>Test Description</Form.Label>
                 <Form.Control as="textarea" rows={3} onChange={e => {
-                    testDetail.description = e.target.value
+                    testDetail.description = e.target.value;
+                    setTestDetail(testDetail);
                 }}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="testCreate.ControlInput3">
                 <Form.Label>Test Status</Form.Label>
                 <StatusDropdown currentStatus={TestStatus.Undefined.toString()}
-                                onStatusSelect={(newStatus) => setSelectedStatus(newStatus)}/>
+                                onStatusSelect={handleStatusChange}/>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={(e) => createNewTest(testDetail, e)}>
                 Submit
