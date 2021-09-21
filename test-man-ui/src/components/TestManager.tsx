@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
-import {Col, Row} from "react-bootstrap";
+import {Card, Col, Navbar, Row} from "react-bootstrap";
 import CreateTestModal from "./CreateTestModal";
 import TestPreviewList from "./TestPreviewList";
 import TestManagerApi from "../api/TestManagerApi";
@@ -20,17 +20,31 @@ const TestManager: React.FC = () => {
 
     return (
         <>
-            <Container className="p-3">
-                <Row>
-                    <Col>
-                        <CreateTestModal onNewTestCreated={loadTestDetails}/>
-                    </Col>
-                </Row>
-            </Container>
-            <Container className="p-3">
-                <Row>
-                    <TestPreviewList testDetails={allTests} onTestDataChange={loadTestDetails}/>
-                </Row>
+            <Navbar bg="light">
+                <Container>
+                    <Navbar.Brand>Test Manager</Navbar.Brand>
+                </Container>
+            </Navbar>
+            <Container>
+                <Card>
+                    <Container className="p-3">
+                        <Row>
+                            <Col>
+                                <CreateTestModal onNewTestCreated={loadTestDetails}/>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card>
+                <Card>
+                    <Container>
+                        <h3>Tests</h3>
+                        <Container className="p-3">
+                            <Row>
+                                <TestPreviewList testDetails={allTests} onTestDataChange={loadTestDetails}/>
+                            </Row>
+                        </Container>
+                    </Container>
+                </Card>
             </Container>
         </>
     );
