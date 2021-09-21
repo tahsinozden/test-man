@@ -2,6 +2,7 @@ import React from "react";
 import {Col, Form, Row} from "react-bootstrap";
 import TestDetail from "../models/TestDetail";
 import StatusDropdown from "./StatusDropdown";
+import TestStatus from "../models/TestStatus";
 
 interface TestPreviewProps {
     testDetail: TestDetail;
@@ -19,7 +20,7 @@ const TestPreview: React.FC<TestPreviewProps> = ({testDetail, onStatusSelect}: T
                 <Row>
                     <Col>{testDetail.name}</Col>
                     <Col>
-                        <StatusDropdown currentStatus={testDetail.status || "Undefined"}
+                        <StatusDropdown currentStatus={testDetail.status || TestStatus.Undefined.toString()}
                                         onStatusSelect={(newStatus) => handleStatusSelect(testDetail, newStatus)}/>
                     </Col>
                     <Col></Col>

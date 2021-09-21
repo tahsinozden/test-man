@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import TestDetail from "../models/TestDetail";
 import {Button, Form} from "react-bootstrap";
+import StatusDropdown from "./StatusDropdown";
+import TestStatus from "../models/TestStatus";
 
 const CreateTest: React.FC = () => {
+    const [selectedStatus, setSelectedStatus] = useState(TestStatus.Undefined.toString());
     const testDetail: TestDetail = new TestDetail();
     const createNewTest = (testDetail: TestDetail, e: any) => {
         e.preventDefault();
@@ -32,9 +35,8 @@ const CreateTest: React.FC = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="testCreate.ControlInput3">
                 <Form.Label>Test Status</Form.Label>
-                <Form.Control type="text" onChange={e => {
-                    testDetail.status = e.target.value
-                }}/>
+                <StatusDropdown currentStatus={TestStatus.Undefined.toString()}
+                                onStatusSelect={(newStatus) => setSelectedStatus(newStatus)}/>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={(e) => createNewTest(testDetail, e)}>
                 Submit
