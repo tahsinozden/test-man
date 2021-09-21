@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
@@ -19,5 +20,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .map(ConstraintViolation::getMessage)
                 .collect(Collectors.toList());
         return ResponseEntity.badRequest().body(new ErrorResponse(messages));
+    }
+
+    @ExceptionHandler(value = NoResultException.class)
+    public ResponseEntity<Object> handleNoRecordsFound(NoResultException e) {
+        return ResponseEntity.notFound().build();
     }
 }

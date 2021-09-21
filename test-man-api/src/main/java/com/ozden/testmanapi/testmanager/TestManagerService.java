@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +27,7 @@ public class TestManagerService {
 
     @Transactional
     public TestEntity updateTest(Long testId, TestEntity testEntity) {
-        TestEntity dbTestEntity = testManagerRepository.findById(testId).orElseThrow(() -> new RuntimeException("not found!"));
+        TestEntity dbTestEntity = testManagerRepository.findById(testId).orElseThrow(() -> new NoResultException("no records found!"));
         if (!StringUtils.equals(testEntity.getStatus(), dbTestEntity.getStatus())) {
             dbTestEntity.setStatus(testEntity.getStatus());
         }
