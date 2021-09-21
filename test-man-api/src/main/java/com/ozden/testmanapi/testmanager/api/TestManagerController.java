@@ -1,6 +1,8 @@
 package com.ozden.testmanapi.testmanager.api;
 
+import com.ozden.testmanapi.testmanager.TestManagerService;
 import com.ozden.testmanapi.testmanager.entity.Test;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,26 +11,26 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api/v1/tests")
+@RequiredArgsConstructor
 public class TestManagerController {
+
+    private final TestManagerService testManagerService;
 
     @GetMapping
     public List<Test> getAllTests() {
-        return List.of(
-                new Test(1L, "Test should run 1", "Passed", ""),
-                new Test(2L, "Test should run 2", "Failed", "")
-        );
+        return testManagerService.getAllTests();
     }
 
     // TODO: handle validations, id, status etc
     @PatchMapping("/{testId}")
     public Test updateTest(@PathVariable Long testId, @RequestBody Test test) {
-        return test;
+        return testManagerService.updateTest(testId, test);
     }
 
     // TODO: handle validations, id, status etc
     @PostMapping
     public Test createTest(@RequestBody Test test) {
-        return test;
+        return testManagerService.saveTest(test);
     }
 
 }
