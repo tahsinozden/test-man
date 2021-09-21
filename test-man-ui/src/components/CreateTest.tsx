@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import TestDetail from "../models/TestDetail";
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import StatusDropdown from "./StatusDropdown";
 import TestStatus from "../models/TestStatus";
 
@@ -11,6 +11,7 @@ interface CreateTestProps {
 const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestProps) => {
     const [selectedStatus, setSelectedStatus] = useState(TestStatus.Undefined.toString());
     const [testDetail, setTestDetail] = useState(new TestDetail());
+    const [hasErrors, setHasErrors] = useState(false);
 
     const handleStatusChange = (newStatus: string) => {
         setSelectedStatus(newStatus);
@@ -20,7 +21,12 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
 
     const createNewTest = (testDetail: TestDetail, e: any) => {
         e.preventDefault();
-        console.log(testDetail);
+        const showError = !isFormValid(testDetail);
+        if (showError) {
+            setHasErrors(showError);
+            return;
+        }
+
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -30,6 +36,17 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
         fetch(`http://localhost:8080/api/v1/tests`, requestOptions)
             .then(response => response.json())
             .then(data => onNewTestCreated());
+    }
+
+    // TODO: handle form validations in form level
+    const isFormValid = (testDetail: TestDetail) => {
+        if (!testDetail) {
+            return false;
+        }
+        if (!testDetail.name) {
+            return false;
+        }
+        return true;
     }
 
     return (
@@ -52,6 +69,14 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
                 <Form.Label>Test Status</Form.Label>
                 <StatusDropdown currentStatus={TestStatus.Undefined.toString()}
                                 onStatusSelect={handleStatusChange}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="testCreate.Alert">
+                {
+                    hasErrors &&
+                    <Alert variant="danger">
+                        Test name and status are mandatory
+                    </Alert>
+                }
             </Form.Group>
             <Button variant="primary" type="submit" onClick={(e) => createNewTest(testDetail, e)}>
                 Submit
