@@ -1,5 +1,6 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Dropdown, DropdownButton} from "react-bootstrap";
+import TestStatus from "../models/TestStatus";
 
 interface StatusDropDownProps {
     currentStatus: string;
@@ -7,8 +8,9 @@ interface StatusDropDownProps {
 }
 
 const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusSelect}: StatusDropDownProps) => {
-    const statuses = ["Passed", "Failed"];
+    const statuses = ["Passed", "Failed", TestStatus.Undefined.toString()];
     const statusDropdownItems: any = [];
+    const [selected, setSelected] = useState(TestStatus.Undefined.toString());
 
     useEffect(() => {
         for (let status of statuses) {
@@ -18,16 +20,21 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
         }
     });
 
+    useEffect(() => {
+        setSelected(currentStatus);
+    }, [currentStatus]);
+
     return (
         <>
             {/*FIXME: based on the status string, the size changes*/}
             <DropdownButton
                 id="dropdown-item-button"
-                title={currentStatus}
+                title={selected}
                 variant="secondary"
                 onSelect={(selectedValue) => {
                     if (selectedValue) {
                         onStatusSelect(selectedValue);
+                        setSelected(selectedValue);
                     }
                 }}
             >

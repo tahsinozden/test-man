@@ -24,7 +24,7 @@ const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDat
     const updateTestStatus = (testDetail: TestDetail, newStatus: string) => {
         const newTestDetail = {...testDetail};
         newTestDetail.status = newStatus;
-        submitStatus(testDetail);
+        submitStatus(newTestDetail);
     }
 
     const submitStatus = (testDetail: TestDetail) => {
