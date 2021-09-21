@@ -1,4 +1,6 @@
 // TODO: URL from configs
+import TestDetail from "../models/TestDetail";
+
 const baseApiUrl = "http://localhost:8080/api/v1";
 
 class TestManagerApi {
@@ -9,6 +11,15 @@ class TestManagerApi {
             headers: {'Content-Type': 'application/json'}
         };
         return fetch(`${baseApiUrl}/tests/statuses`, requestOptions)
+            .then(response => response.json());
+    }
+
+    getAllTests(): Promise<TestDetail[]> {
+        const requestOptions = {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        };
+        return fetch(`${baseApiUrl}/tests`, requestOptions)
             .then(response => response.json());
     }
 }

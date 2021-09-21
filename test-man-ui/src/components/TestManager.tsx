@@ -3,19 +3,15 @@ import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 import CreateTestModal from "./CreateTestModal";
 import TestPreviewList from "./TestPreviewList";
+import TestManagerApi from "../api/TestManagerApi";
+import TestDetail from "../models/TestDetail";
 
 const TestManager: React.FC = () => {
-    const [allTests, setAllTests] = useState([]);
+    const [allTests, setAllTests] = useState<TestDetail[]>([]);
+    const testManagerApi = new TestManagerApi();
 
     const loadTestDetails = () => {
-        const requestOptions = {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-        };
-        // TODO: get URL from configs
-        fetch(`http://localhost:8080/api/v1/tests`, requestOptions)
-            .then(response => response.json())
-            .then(data => setAllTests(data));
+        testManagerApi.getAllTests().then(data => setAllTests(data));
     }
 
     useEffect(() => {
