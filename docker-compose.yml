@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  test-man-api:
+    build:
+      context: test-man-api
+      dockerfile: Dockerfile
+    #      dockerfile: runOnly.Dockerfile
+    ports:
+      - "8080:8080"
+
+  test-man-ui:
+    build:
+      context: test-man-ui
+      dockerfile: Dockerfile
+    #      dockerfile: runOnly.Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - test-man-api
