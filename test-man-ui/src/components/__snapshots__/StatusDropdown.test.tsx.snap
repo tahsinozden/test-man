@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there is a current status 1`] = `
+<div
+  className="dropdown"
+>
+  <button
+    aria-expanded={false}
+    className="dropdown-toggle btn btn-secondary"
+    disabled={false}
+    id="dropdown-item-button"
+    onClick={[Function]}
+    type="button"
+  >
+    Passed
+  </button>
+</div>
+`;
+
+exports[`renders correctly when there is a empty status text 1`] = `
+<div
+  className="dropdown"
+>
+  <button
+    aria-expanded={false}
+    className="dropdown-toggle btn btn-secondary"
+    disabled={false}
+    id="dropdown-item-button"
+    onClick={[Function]}
+    type="button"
+  >
+    
+  </button>
+</div>
+`;
