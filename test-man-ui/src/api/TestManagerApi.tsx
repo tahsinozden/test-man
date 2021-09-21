@@ -22,6 +22,16 @@ class TestManagerApi {
         return fetch(`${baseApiUrl}/tests`, requestOptions)
             .then(response => response.json());
     }
+
+    createNewTest(testDetail: TestDetail): Promise<TestDetail> {
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(testDetail)
+        };
+        return fetch(`${baseApiUrl}/tests`, requestOptions)
+            .then(response => response.json());
+    }
 }
 
 export default TestManagerApi;

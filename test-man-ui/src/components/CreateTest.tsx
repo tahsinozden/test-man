@@ -3,6 +3,7 @@ import TestDetail from "../models/TestDetail";
 import {Alert, Button, Form} from "react-bootstrap";
 import StatusDropdown from "./StatusDropdown";
 import TestStatus from "../models/TestStatus";
+import TestManagerApi from "../api/TestManagerApi";
 
 interface CreateTestProps {
     onNewTestCreated: () => void;
@@ -12,6 +13,7 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
     const [selectedStatus, setSelectedStatus] = useState(TestStatus.Undefined.toString());
     const [testDetail, setTestDetail] = useState(new TestDetail());
     const [hasErrors, setHasErrors] = useState(false);
+    const testManagerApi = new TestManagerApi();
 
     const handleStatusChange = (newStatus: string) => {
         setSelectedStatus(newStatus);
@@ -26,16 +28,7 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
             setHasErrors(showError);
             return;
         }
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(testDetail)
-        };
-        // TODO: URL from configs
-        fetch(`http://localhost:8080/api/v1/tests`, requestOptions)
-            .then(response => response.json())
-            .then(data => onNewTestCreated());
+        testManagerApi.createNewTest(testDetail).then(data => onNewTestCreated());
     }
 
     // TODO: handle form validations in form level
