@@ -32,6 +32,16 @@ class TestManagerApi {
         return fetch(`${baseApiUrl}/tests`, requestOptions)
             .then(response => response.json());
     }
+
+    updateExistingTest(testDetail: TestDetail): Promise<TestDetail> {
+        const requestOptions = {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({status: testDetail.status})
+        };
+        return fetch(`${baseApiUrl}/tests/${testDetail.id}`, requestOptions)
+            .then(response => response.json())
+    }
 }
 
 export default TestManagerApi;

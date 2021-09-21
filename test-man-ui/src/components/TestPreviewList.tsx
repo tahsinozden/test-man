@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import TestDetail from "../models/TestDetail";
 import {Container} from "react-bootstrap";
 import TestPreview from "./TestPreview";
+import TestManagerApi from "../api/TestManagerApi";
 
 interface TestPreviewListProps {
     testDetails: TestDetail[];
@@ -11,6 +12,7 @@ interface TestPreviewListProps {
 const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDataChange}: TestPreviewListProps) => {
     const [details, setDetails] = useState<any>([]);
     let items: any[] = [];
+    const testManagerApi = new TestManagerApi();
 
     useEffect(() => {
         for (let i in testDetails) {
@@ -28,15 +30,7 @@ const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDat
     }
 
     const submitStatus = (testDetail: TestDetail) => {
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({status: testDetail.status})
-        };
-        // TODO: URL from configs
-        fetch(`http://localhost:8080/api/v1/tests/${testDetail.id}`, requestOptions)
-            .then(response => response.json())
-            .then(data => onTestDataChange());
+        testManagerApi.updateExistingTest(testDetail).then(data => onTestDataChange());
     }
 
     return (
