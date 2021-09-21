@@ -1,5 +1,6 @@
 package com.ozden.testmanapi.testmanager.api;
 
+import com.ozden.testmanapi.testmanager.api.entity.TestApiView;
 import com.ozden.testmanapi.testmanager.entity.TestEntity;
 import com.ozden.testmanapi.testmanager.entity.TestStatus;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient(timeout = "60000")
 @ExtendWith({SpringExtension.class})
-class TestManagerControllerIntegrationTestEntity {
+class TestManagerControllerIntegrationTest {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -151,7 +152,7 @@ class TestManagerControllerIntegrationTestEntity {
                             .bodyValue(createdTest)
                             .exchange()
                             .expectStatus().isOk()
-                            .expectBody(TestEntity.class).value(updatedTest -> {
+                            .expectBody(TestApiView.class).value(updatedTest -> {
                                 // then
                                 assertThat(updatedTest).isNotNull();
                                 assertThat(updatedTest.getId()).isNotNull();
