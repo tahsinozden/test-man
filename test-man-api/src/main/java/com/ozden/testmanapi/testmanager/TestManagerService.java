@@ -1,6 +1,6 @@
 package com.ozden.testmanapi.testmanager;
 
-import com.ozden.testmanapi.testmanager.entity.Test;
+import com.ozden.testmanapi.testmanager.entity.TestEntity;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -15,20 +15,20 @@ public class TestManagerService {
     private final TestManagerRepository testManagerRepository;
 
     @Transactional
-    public Test saveTest(Test test) {
-        return testManagerRepository.save(test);
+    public TestEntity saveTest(TestEntity testEntity) {
+        return testManagerRepository.save(testEntity);
     }
 
     @Transactional
-    public Test updateTest(Long testId, Test test) {
-        Test dbTest = testManagerRepository.findById(testId).orElseThrow(() -> new RuntimeException("not found!"));
-        if (!StringUtils.equals(test.getStatus(), dbTest.getStatus())) {
-            dbTest.setStatus(test.getStatus());
+    public TestEntity updateTest(Long testId, TestEntity testEntity) {
+        TestEntity dbTestEntity = testManagerRepository.findById(testId).orElseThrow(() -> new RuntimeException("not found!"));
+        if (!StringUtils.equals(testEntity.getStatus(), dbTestEntity.getStatus())) {
+            dbTestEntity.setStatus(testEntity.getStatus());
         }
-        return testManagerRepository.save(dbTest);
+        return testManagerRepository.save(dbTestEntity);
     }
 
-    public List<Test> getAllTests() {
+    public List<TestEntity> getAllTests() {
         return testManagerRepository.findAll();
     }
 }

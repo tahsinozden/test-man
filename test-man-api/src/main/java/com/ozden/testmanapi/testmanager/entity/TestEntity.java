@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "tests")
-public class Test {
+public class TestEntity {
 
     // TODO: consider using UUID
     @GeneratedValue(strategy = GenerationType.IDENTITY)
