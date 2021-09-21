@@ -1,6 +1,7 @@
 package com.ozden.testmanapi.testmanager.api.entity;
 
 import com.ozden.testmanapi.testmanager.api.validations.group.OnCreate;
+import com.ozden.testmanapi.testmanager.entity.TestStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,6 +18,6 @@ public class TestApiView {
     @NotNull(message = "name cannot be null", groups = {OnCreate.class})
     private String name;
 
-    private String status;
+    private TestStatus status;
     private String description;
 }

@@ -4,6 +4,7 @@ import com.ozden.testmanapi.testmanager.api.entity.TestApiView;
 import com.ozden.testmanapi.testmanager.entity.TestEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 @Component
@@ -14,7 +15,7 @@ public class TestApiViewToTestEntityMapper implements Function<TestApiView, Test
         return TestEntity.builder()
                 .id(testApiView.getId())
                 .name(testApiView.getName())
-                .status(testApiView.getStatus())
+                .status(Objects.nonNull(testApiView.getStatus()) ? testApiView.getStatus().getValue() : null)
                 .description(testApiView.getDescription())
                 .build();
     }

@@ -37,12 +37,12 @@ class TestManagerControllerIntegrationTest {
                 .bodyValue(test)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(TestEntity.class).value(createdTest -> {
+                .expectBody(TestApiView.class).value(createdTest -> {
                     // then
                     assertThat(createdTest).isNotNull();
                     assertThat(createdTest.getId()).isNotNull();
                     assertThat(createdTest.getName()).isEqualTo(test.getName());
-                    assertThat(createdTest.getStatus()).isEqualTo(test.getStatus());
+                    assertThat(createdTest.getStatus()).isEqualTo(TestStatus.Passed);
                 });
     }
 
@@ -58,12 +58,12 @@ class TestManagerControllerIntegrationTest {
                 .bodyValue(test)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(TestEntity.class).value(createdTest -> {
+                .expectBody(TestApiView.class).value(createdTest -> {
                     // then
                     assertThat(createdTest).isNotNull();
                     assertThat(createdTest.getId()).isNotNull();
                     assertThat(createdTest.getName()).isEqualTo(test.getName());
-                    assertThat(createdTest.getStatus()).isEqualTo(TestStatus.Undefined.getValue());
+                    assertThat(createdTest.getStatus()).isEqualTo(TestStatus.Undefined);
                     assertThat(createdTest.getDescription()).isEqualTo(test.getDescription());
                 });
     }
@@ -80,12 +80,12 @@ class TestManagerControllerIntegrationTest {
                 .bodyValue(test)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(TestEntity.class).value(createdTest -> {
+                .expectBody(TestApiView.class).value(createdTest -> {
                     // then
                     assertThat(createdTest).isNotNull();
                     assertThat(createdTest.getId()).isNotNull();
                     assertThat(createdTest.getName()).isEqualTo(test.getName());
-                    assertThat(createdTest.getStatus()).isEqualTo(test.getStatus());
+                    assertThat(createdTest.getStatus()).isEqualTo(TestStatus.Failed);
                     assertThat(createdTest.getDescription()).isNull();
                 });
     }
@@ -143,8 +143,8 @@ class TestManagerControllerIntegrationTest {
                 .bodyValue(test)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(TestEntity.class).value(createdTest -> {
-                    createdTest.setStatus(TestStatus.Undefined.getValue());
+                .expectBody(TestApiView.class).value(createdTest -> {
+                    createdTest.setStatus(TestStatus.Undefined);
                     webTestClient
                             // when
                             .patch()
@@ -157,7 +157,7 @@ class TestManagerControllerIntegrationTest {
                                 assertThat(updatedTest).isNotNull();
                                 assertThat(updatedTest.getId()).isNotNull();
                                 assertThat(updatedTest.getName()).isEqualTo(test.getName());
-                                assertThat(updatedTest.getStatus()).isEqualTo(TestStatus.Undefined.getValue());
+                                assertThat(updatedTest.getStatus()).isEqualTo(TestStatus.Undefined);
                             });
                 });
     }
