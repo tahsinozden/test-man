@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Test {
 
     // TODO: consider using UUID
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
