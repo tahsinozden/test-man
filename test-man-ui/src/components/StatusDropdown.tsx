@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import TestStatus from "../models/TestStatus";
 import TestManagerApi from "../api/TestManagerApi";
+import "./StatusDropDown.css"
 
 interface StatusDropDownProps {
     currentStatus: string;
@@ -32,7 +33,6 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
 
     return (
         <>
-            {/*FIXME: based on the status string, the size changes*/}
             <DropdownButton
                 id="dropdown-item-button"
                 title={selected}
