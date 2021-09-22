@@ -2,6 +2,9 @@
 
 a simple test manager web app
 
+![Main View](docs/1.JPG?raw=true "Main View")
+![Create a new test](docs/2.JPG?raw=true "Test Creation")
+
 ## How to run via docker-compose
 
 ### Dependencies
