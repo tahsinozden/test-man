@@ -37,7 +37,7 @@ const TestManager: React.FC = () => {
                 </Card>
                 <Card>
                     <Container>
-                        <h3>Tests</h3>
+                        <h5>Tests</h5>
                         <Container className="p-3">
                             <Row>
                                 <TestPreviewList testDetails={allTests} onTestDataChange={loadTestDetails}/>
