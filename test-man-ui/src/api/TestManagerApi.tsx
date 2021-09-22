@@ -1,7 +1,6 @@
-// TODO: URL from configs
 import TestDetail from "../models/TestDetail";
 
-const baseApiUrl = "http://localhost:8080/api/v1";
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api/v1';
 
 class TestManagerApi {
 
@@ -10,7 +9,7 @@ class TestManagerApi {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         };
-        return fetch(`${baseApiUrl}/tests/statuses`, requestOptions)
+        return fetch(`${API_BASE_URL}/tests/statuses`, requestOptions)
             .then(response => response.json());
     }
 
@@ -19,7 +18,7 @@ class TestManagerApi {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         };
-        return fetch(`${baseApiUrl}/tests`, requestOptions)
+        return fetch(`${API_BASE_URL}/tests`, requestOptions)
             .then(response => response.json());
     }
 
@@ -29,7 +28,7 @@ class TestManagerApi {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(testDetail)
         };
-        return fetch(`${baseApiUrl}/tests`, requestOptions)
+        return fetch(`${API_BASE_URL}/tests`, requestOptions)
             .then(response => response.json());
     }
 
@@ -39,7 +38,7 @@ class TestManagerApi {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({status: testDetail.status})
         };
-        return fetch(`${baseApiUrl}/tests/${testDetail.id}`, requestOptions)
+        return fetch(`${API_BASE_URL}/tests/${testDetail.id}`, requestOptions)
             .then(response => response.json())
     }
 }
