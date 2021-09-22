@@ -14,6 +14,12 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
     const statusDropdownItems: any = [];
     const [selected, setSelected] = useState(TestStatus.Undefined.toString());
     const testManagerApi = new TestManagerApi();
+    const colorByStatus = new Map([
+            [TestStatus.Undefined.toString(), "secondary"],
+            [TestStatus.Passed.toString(), "success"],
+            [TestStatus.Failed.toString(), "danger"]
+        ]
+    );
 
     useEffect(() => {
         testManagerApi.getAllStatuses().then(data => setStatuses(data));
@@ -36,7 +42,7 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
             <DropdownButton
                 id="dropdown-item-button"
                 title={selected}
-                variant="secondary"
+                variant={colorByStatus.get(selected)}
                 onSelect={(selectedValue) => {
                     if (selectedValue) {
                         onStatusSelect(selectedValue);

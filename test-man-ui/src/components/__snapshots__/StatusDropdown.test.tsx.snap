@@ -6,7 +6,7 @@ exports[`renders correctly when there is a current status 1`] = `
 >
   <button
     aria-expanded={false}
-    className="dropdown-toggle btn btn-secondary"
+    className="dropdown-toggle btn btn-success"
     disabled={false}
     id="dropdown-item-button"
     onClick={[Function]}
@@ -23,7 +23,7 @@ exports[`renders correctly when there is a empty status text 1`] = `
 >
   <button
     aria-expanded={false}
-    className="dropdown-toggle btn btn-secondary"
+    className="dropdown-toggle btn btn-primary"
     disabled={false}
     id="dropdown-item-button"
     onClick={[Function]}
