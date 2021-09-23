@@ -2,16 +2,7 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import TestManager from "./TestManager";
 import renderer from "react-test-renderer";
-
-window.matchMedia = window.matchMedia || function () {
-    return {
-        matches: false,
-        addListener: function () {
-        },
-        removeListener: function () {
-        }
-    };
-};
+import "../jestGlobalMocks"
 
 it('renders correctly', () => {
     const tree = renderer

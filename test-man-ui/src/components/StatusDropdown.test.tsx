@@ -1,15 +1,6 @@
 import renderer from "react-test-renderer";
 import StatusDropdown from "./StatusDropdown";
-
-window.matchMedia = window.matchMedia || function () {
-    return {
-        matches: false,
-        addListener: function () {
-        },
-        removeListener: function () {
-        }
-    };
-};
+import "../jestGlobalMocks"
 
 it('renders correctly when there is a current status', () => {
     const tree = renderer
