@@ -2,6 +2,16 @@ import renderer from "react-test-renderer";
 import TestPreview from "./TestPreview";
 import TestDetail from "../models/TestDetail";
 
+window.matchMedia = window.matchMedia || function () {
+    return {
+        matches: false,
+        addListener: function () {
+        },
+        removeListener: function () {
+        }
+    };
+};
+
 it('renders correctly when there is a test detail', () => {
     const testDetail = new TestDetail(1, "name", "Passed", "");
     const tree = renderer

@@ -2,6 +2,16 @@ import renderer from "react-test-renderer";
 import TestPreviewList from "./TestPreviewList";
 import TestDetail from "../models/TestDetail";
 
+window.matchMedia = window.matchMedia || function () {
+    return {
+        matches: false,
+        addListener: function () {
+        },
+        removeListener: function () {
+        }
+    };
+};
+
 it('renders correctly when there are no tests', () => {
     const tree = renderer
         .create(<TestPreviewList onTestDataChange={() => {
