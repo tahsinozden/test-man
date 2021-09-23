@@ -14,6 +14,7 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
     const [testDetail, setTestDetail] = useState(new TestDetail());
     const [hasErrors, setHasErrors] = useState(false);
     const testManagerApi = new TestManagerApi();
+    const formRef: any = React.createRef();
 
     const handleStatusChange = (newStatus: string) => {
         setSelectedStatus(newStatus);
@@ -29,6 +30,7 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
             return;
         }
         testManagerApi.createNewTest(testDetail).then(data => onNewTestCreated());
+        formRef.current.resetFields();
     }
 
     // TODO: handle form validations in form level
@@ -47,8 +49,8 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
             name="basic"
             labelCol={{span: 8}}
             wrapperCol={{span: 16}}
-            initialValues={testDetail}
             autoComplete="off"
+            ref={formRef}
         >
             <Form.Item
                 label="Name"
