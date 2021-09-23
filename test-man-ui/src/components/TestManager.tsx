@@ -39,7 +39,7 @@ const TestManager: React.FC = () => {
                     <Row>
                         <Col span={4} />
                         <Col>
-                            <h5>Tests</h5>
+                            <h3>Tests</h3>
                         </Col>
                     </Row>
                     <Row>

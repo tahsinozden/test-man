@@ -27,7 +27,7 @@ const CreateTestModal: React.FC<CreateTestModalProps> = ({onNewTestCreated}: Cre
             <Button type="primary" onClick={showModal}>
                 Create a new test
             </Button>
-            <Modal title="Basic Modal" visible={isModalVisible} onCancel={handleCancel} footer={null}>
+            <Modal title="Create a new test" visible={isModalVisible} onCancel={handleCancel} footer={null}>
                 <CreateTest onNewTestCreated={handleTestCreated}/>
             </Modal>
         </>
