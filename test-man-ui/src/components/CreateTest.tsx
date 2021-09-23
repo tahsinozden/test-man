@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import TestDetail from "../models/TestDetail";
-import {Alert, Button, Form} from "react-bootstrap";
 import StatusDropdown from "./StatusDropdown";
 import TestStatus from "../models/TestStatus";
 import TestManagerApi from "../api/TestManagerApi";
+import {Alert, Button, Form, Input} from "antd";
 
 interface CreateTestProps {
     onNewTestCreated: () => void;
@@ -43,37 +43,53 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
     }
 
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="testCreate.ControlInput1">
-                <Form.Label>Test Name</Form.Label>
-                <Form.Control type="text" placeholder="New test name" onChange={e => {
+        <Form
+            name="basic"
+            labelCol={{span: 8}}
+            wrapperCol={{span: 16}}
+            initialValues={testDetail}
+            autoComplete="off"
+        >
+            <Form.Item
+                label="Name"
+                name="name"
+                rules={[{required: true, message: 'Please input a name!'}]}
+            >
+                <Input onChange={e => {
                     testDetail.name = e.target.value;
                     setTestDetail(testDetail);
                 }}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="testCreate.ControlTextarea1">
-                <Form.Label>Test Description</Form.Label>
-                <Form.Control as="textarea" rows={3} onChange={e => {
+            </Form.Item>
+
+            <Form.Item
+                label="Description"
+                name="description"
+                rules={[{required: false, message: 'Please input a description!'}]}
+            >
+                <Input.TextArea onChange={e => {
                     testDetail.description = e.target.value;
                     setTestDetail(testDetail);
                 }}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="testCreate.ControlInput3">
-                <Form.Label>Test Status</Form.Label>
+            </Form.Item>
+            <Form.Item
+                label="Status"
+                name="status"
+            >
                 <StatusDropdown currentStatus={TestStatus.Undefined.toString()}
                                 onStatusSelect={handleStatusChange}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="testCreate.Alert">
-                {
-                    hasErrors &&
-                    <Alert variant="danger">
-                        Test name and status are mandatory
-                    </Alert>
-                }
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={(e) => createNewTest(testDetail, e)}>
-                Submit
-            </Button>
+            </Form.Item>
+            {
+                hasErrors &&
+                <Form.Item wrapperCol={{offset: 8, span: 16}}>
+                    <Alert message="Please input mandatory fields!" type="error"/>
+                </Form.Item>
+            }
+            <Form.Item wrapperCol={{offset: 8, span: 16}}>
+                <Button type="primary" htmlType="submit"
+                        onClick={(e) => createNewTest(testDetail, e)}>
+                    Submit
+                </Button>
+            </Form.Item>
         </Form>
     );
 }
