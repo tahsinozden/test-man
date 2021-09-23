@@ -1,40 +1,34 @@
-import {Button, Modal} from "react-bootstrap";
 import React, {useState} from "react";
 import CreateTest from "./CreateTest";
+import {Button, Modal} from "antd";
 
 interface CreateTestModalProps {
     onNewTestCreated: () => void;
 }
 
 const CreateTestModal: React.FC<CreateTestModalProps> = ({onNewTestCreated}: CreateTestModalProps) => {
-    const [show, setShow] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const handleTestCreated = () => {
         onNewTestCreated();
-        handleClose();
+        setIsModalVisible(false);
     }
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button type="primary" onClick={showModal}>
                 Create a new test
             </Button>
-
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Create a new test</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <CreateTest onNewTestCreated={handleTestCreated}/>
-                </Modal.Body>
+            <Modal title="Basic Modal" visible={isModalVisible} onCancel={handleCancel} footer={null}>
+                <CreateTest onNewTestCreated={handleTestCreated}/>
             </Modal>
         </>
     );
