@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react";
-import Container from "react-bootstrap/Container";
-import {Card, Navbar} from "react-bootstrap";
 import CreateTestModal from "./CreateTestModal";
 import TestPreviewList from "./TestPreviewList";
 import TestManagerApi from "../api/TestManagerApi";
 import TestDetail from "../models/TestDetail";
-import {Menu, Row, Col, Layout, Divider} from "antd";
+import {Col, Divider, Layout, Menu, Row} from "antd";
 
 const { Header, Footer, Sider, Content } = Layout;
 
