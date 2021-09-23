@@ -43,13 +43,14 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
 
     const handleMenuClick = (e: any) => {
         onStatusSelect(e.key);
+        setSelected(e.key);
     }
 
     return (
         <>
             <Dropdown overlay={statusMenu}>
                 <Button>
-                    {currentStatus} <DownOutlined/>
+                    {selected} <DownOutlined/>
                 </Button>
             </Dropdown>
         </>
