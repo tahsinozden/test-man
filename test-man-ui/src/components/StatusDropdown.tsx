@@ -3,14 +3,12 @@ import TestStatus from "../models/TestStatus";
 import TestManagerApi from "../api/TestManagerApi";
 import "./StatusDropDown.css"
 import {Button, Dropdown, Menu} from "antd";
+import {DownOutlined} from "@ant-design/icons";
 
 interface StatusDropDownProps {
     currentStatus: string;
     onStatusSelect: (newStatus: string) => void;
 }
-
-// import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-// import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
 const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusSelect}: StatusDropDownProps) => {
     const [statuses, setStatuses] = useState<string[]>([]);
@@ -51,8 +49,7 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
         <>
             <Dropdown overlay={statusMenu}>
                 <Button>
-                    {/*Button <DownOutlined />*/}
-                    {currentStatus}
+                    {currentStatus} <DownOutlined/>
                 </Button>
             </Dropdown>
         </>
