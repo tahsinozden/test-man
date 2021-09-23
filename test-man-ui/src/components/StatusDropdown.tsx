@@ -14,11 +14,10 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
     const [statuses, setStatuses] = useState<string[]>([]);
     const [selected, setSelected] = useState(TestStatus.Undefined.toString());
     const testManagerApi = new TestManagerApi();
-    // TODO: color entries based on status
     const colorByStatus = new Map([
-            [TestStatus.Undefined.toString(), "secondary"],
-            [TestStatus.Passed.toString(), "success"],
-            [TestStatus.Failed.toString(), "danger"]
+            [TestStatus.Undefined.toString(), "grey"],
+            [TestStatus.Passed.toString(), "green"],
+            [TestStatus.Failed.toString(), "red"]
         ]
     );
     const [statusMenu, setStatusMenu] = useState<ReactElement>((<></>));
@@ -49,7 +48,7 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
     return (
         <>
             <Dropdown overlay={statusMenu}>
-                <Button>
+                <Button type="primary" style={{background: colorByStatus.get(selected), borderColor: "white"}}>
                     {selected} <DownOutlined/>
                 </Button>
             </Dropdown>
