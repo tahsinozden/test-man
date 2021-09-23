@@ -48,7 +48,7 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
     return (
         <>
             <Dropdown overlay={statusMenu}>
-                <Button type="primary" style={{background: colorByStatus.get(selected), borderColor: "white"}}>
+                <Button type="primary" className="status-button" style={{background: colorByStatus.get(selected)}}>
                     {selected} <DownOutlined/>
                 </Button>
             </Dropdown>
