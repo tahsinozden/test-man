@@ -2,8 +2,8 @@
 
 a simple test manager web app
 
-![Main View](https://github.com/tahsinozden/test-man/blob/main/docs/snaps/main_page.JPG)
-![Test Creation](https://github.com/tahsinozden/test-man/blob/main/docs/snaps/create_test_modal.JPG)
+![Main View](https://github.com/tahsinozden/test-man/blob/main/docs/snapshots/main_page.JPG)
+![Test Creation](https://github.com/tahsinozden/test-man/blob/main/docs/snapshots/create_test_modal.JPG)
 
 ## How to run via docker-compose
 
