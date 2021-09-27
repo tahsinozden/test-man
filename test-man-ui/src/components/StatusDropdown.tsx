@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Dropdown, DropdownButton} from "react-bootstrap";
+import React, {ReactElement, useEffect, useState} from "react";
 import TestStatus from "../models/TestStatus";
 import TestManagerApi from "../api/TestManagerApi";
 import "./StatusDropDown.css"
+import {Button, Dropdown, Menu} from "antd";
+import {DownOutlined} from "@ant-design/icons";
 
 interface StatusDropDownProps {
     currentStatus: string;
@@ -11,47 +12,46 @@ interface StatusDropDownProps {
 
 const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusSelect}: StatusDropDownProps) => {
     const [statuses, setStatuses] = useState<string[]>([]);
-    const statusDropdownItems: any = [];
     const [selected, setSelected] = useState(TestStatus.Undefined.toString());
     const testManagerApi = new TestManagerApi();
     const colorByStatus = new Map([
-            [TestStatus.Undefined.toString(), "secondary"],
-            [TestStatus.Passed.toString(), "success"],
-            [TestStatus.Failed.toString(), "danger"]
+            [TestStatus.Undefined.toString(), "grey"],
+            [TestStatus.Passed.toString(), "green"],
+            [TestStatus.Failed.toString(), "red"]
         ]
     );
+    const [statusMenu, setStatusMenu] = useState<ReactElement>((<></>));
 
     useEffect(() => {
         testManagerApi.getAllStatuses().then(data => setStatuses(data));
     }, []);
 
     useEffect(() => {
-        for (let status of statuses) {
-            statusDropdownItems.push(
-                <Dropdown.Item as="label" eventKey={status} key={status}>{status}</Dropdown.Item>
-            );
-        }
-    });
+        setStatusMenu((
+            <Menu onClick={handleMenuClick}>
+                {
+                    statuses.map(el => <Menu.Item key={el}> {el} </Menu.Item>)
+                }
+            </Menu>));
+
+    }, [statuses]);
 
     useEffect(() => {
         setSelected(currentStatus);
     }, [currentStatus]);
 
+    const handleMenuClick = (e: any) => {
+        onStatusSelect(e.key);
+        setSelected(e.key);
+    }
+
     return (
         <>
-            <DropdownButton
-                id="dropdown-item-button"
-                title={selected}
-                variant={colorByStatus.get(selected)}
-                onSelect={(selectedValue) => {
-                    if (selectedValue) {
-                        onStatusSelect(selectedValue);
-                        setSelected(selectedValue);
-                    }
-                }}
-            >
-                {statusDropdownItems}
-            </DropdownButton>
+            <Dropdown overlay={statusMenu}>
+                <Button type="primary" className="status-button" style={{background: colorByStatus.get(selected)}}>
+                    {selected} <DownOutlined/>
+                </Button>
+            </Dropdown>
         </>
     );
 }

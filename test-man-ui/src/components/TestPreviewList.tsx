@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import TestDetail from "../models/TestDetail";
-import {Container} from "react-bootstrap";
 import TestPreview from "./TestPreview";
 import TestManagerApi from "../api/TestManagerApi";
+import {Layout} from "antd";
 
 interface TestPreviewListProps {
     testDetails: TestDetail[];
@@ -34,9 +34,9 @@ const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDat
     }
 
     return (
-        <Container>
+        <Layout>
             {details}
-        </Container>
+        </Layout>
     );
 }
 

@@ -1,6 +1,7 @@
 import renderer from "react-test-renderer";
 import TestPreview from "./TestPreview";
 import TestDetail from "../models/TestDetail";
+import "../jestGlobalMocks"
 
 it('renders correctly when there is a test detail', () => {
     const testDetail = new TestDetail(1, "name", "Passed", "");

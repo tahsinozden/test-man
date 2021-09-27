@@ -2,6 +2,7 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import TestManager from "./TestManager";
 import renderer from "react-test-renderer";
+import "../jestGlobalMocks"
 
 it('renders correctly', () => {
     const tree = renderer

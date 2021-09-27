@@ -1,6 +1,7 @@
 import renderer from "react-test-renderer";
 import TestPreviewList from "./TestPreviewList";
 import TestDetail from "../models/TestDetail";
+import "../jestGlobalMocks"
 
 it('renders correctly when there are no tests', () => {
     const tree = renderer
