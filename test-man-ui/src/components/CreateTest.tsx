@@ -30,7 +30,13 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
             return;
         }
         testManagerApi.createNewTest(testDetail).then(data => onNewTestCreated());
+        resetForm();
+    }
+
+    const resetForm = () => {
         formRef.current.resetFields();
+        setTestDetail(new TestDetail());
+        setHasErrors(false);
     }
 
     // TODO: handle form validations in form level
