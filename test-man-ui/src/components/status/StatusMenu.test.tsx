@@ -1,8 +1,6 @@
-import TestManagerApi from "../../api/TestManagerApi";
-import StatusDropdown from "../StatusDropdown";
+import testManagerApi from "../../api/TestManagerApi";
 import StatusMenu from "./StatusMenu";
 import {render, screen} from "@testing-library/react";
-import testManagerApi from "../../api/useApi";
 
 describe('StatusMenu component', () => {
     it('renders when statuses are fetched from API', async () => {

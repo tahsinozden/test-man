@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import TestDetail from "../models/TestDetail";
 import StatusDropdown from "./StatusDropdown";
 import TestStatus from "../models/TestStatus";
-import TestManagerApi from "../api/TestManagerApi";
+import testManagerApi from "../api/TestManagerApi";
 import {Alert, Button, Form, Input} from "antd";
 
 interface CreateTestProps {
@@ -13,7 +13,6 @@ const CreateTest: React.FC<CreateTestProps> = ({onNewTestCreated}: CreateTestPro
     const [selectedStatus, setSelectedStatus] = useState(TestStatus.Undefined.toString());
     const [testDetail, setTestDetail] = useState(new TestDetail());
     const [hasErrors, setHasErrors] = useState(false);
-    const testManagerApi = new TestManagerApi();
     const formRef: any = React.createRef();
 
     const handleStatusChange = (newStatus: string) => {

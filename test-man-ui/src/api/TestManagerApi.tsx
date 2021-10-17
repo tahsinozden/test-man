@@ -2,8 +2,7 @@ import TestDetail from "../models/TestDetail";
 
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api/v1';
 
-class TestManagerApi {
-
+const testManagerApi = {
     getAllStatuses(): Promise<string[]> {
         const requestOptions = {
             method: 'GET',
@@ -11,7 +10,7 @@ class TestManagerApi {
         };
         return fetch(`${API_BASE_URL}/tests/statuses`, requestOptions)
             .then(response => response.json());
-    }
+    },
 
     getAllTests(): Promise<TestDetail[]> {
         const requestOptions = {
@@ -20,7 +19,7 @@ class TestManagerApi {
         };
         return fetch(`${API_BASE_URL}/tests`, requestOptions)
             .then(response => response.json());
-    }
+    },
 
     createNewTest(testDetail: TestDetail): Promise<TestDetail> {
         const requestOptions = {
@@ -30,7 +29,7 @@ class TestManagerApi {
         };
         return fetch(`${API_BASE_URL}/tests`, requestOptions)
             .then(response => response.json());
-    }
+    },
 
     updateExistingTest(testDetail: TestDetail): Promise<TestDetail> {
         const requestOptions = {
@@ -43,4 +42,4 @@ class TestManagerApi {
     }
 }
 
-export default TestManagerApi;
+export default testManagerApi;

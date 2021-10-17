@@ -11,7 +11,10 @@ Object.defineProperty(window, 'matchMedia', {
 Object.defineProperty(window, 'getComputedStyle', {
     value: () => {
         return {
-            getPropertyValue: () => {}
+            getPropertyValue: () => {
+            }
         };
     }
 });
+
+export {}

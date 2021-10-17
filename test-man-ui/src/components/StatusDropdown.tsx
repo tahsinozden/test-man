@@ -1,6 +1,6 @@
 import React, {ReactElement, useEffect, useState} from "react";
 import TestStatus from "../models/TestStatus";
-import TestManagerApi from "../api/TestManagerApi";
+import testManagerApi from "../api/TestManagerApi";
 import "./StatusDropDown.css"
 import {Button, Dropdown, Menu} from "antd";
 import {DownOutlined} from "@ant-design/icons";
@@ -13,7 +13,6 @@ interface StatusDropDownProps {
 const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusSelect}: StatusDropDownProps) => {
     const [statuses, setStatuses] = useState<string[]>([]);
     const [selected, setSelected] = useState(TestStatus.Undefined.toString());
-    const testManagerApi = new TestManagerApi();
     const colorByStatus = new Map([
             [TestStatus.Undefined.toString(), "grey"],
             [TestStatus.Passed.toString(), "green"],

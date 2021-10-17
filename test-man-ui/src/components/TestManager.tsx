@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CreateTestModal from "./CreateTestModal";
 import TestPreviewList from "./TestPreviewList";
-import TestManagerApi from "../api/TestManagerApi";
+import testManagerApi from "../api/TestManagerApi";
 import TestDetail from "../models/TestDetail";
 import {Col, Divider, Layout, Menu, Row} from "antd";
 
@@ -9,7 +9,6 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const TestManager: React.FC = () => {
     const [allTests, setAllTests] = useState<TestDetail[]>([]);
-    const testManagerApi = new TestManagerApi();
 
     const loadTestDetails = () => {
         testManagerApi.getAllTests().then(data => setAllTests(data));

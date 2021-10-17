@@ -1,7 +1,7 @@
 import React, {ReactElement, useEffect, useState} from "react";
 import TestStatus from "../../models/TestStatus";
 import {Menu} from "antd";
-import testManagerApi from "../../api/useApi";
+import testManagerApi from "../../api/TestManagerApi";
 
 const StatusMenu: React.FC = () => {
     const [newStatuses, setNewStatuses] = useState<string[]>([]);
