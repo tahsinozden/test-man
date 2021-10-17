@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import TestStatus from "../models/TestStatus";
-import testManagerApi from "../api/TestManagerApi";
+import TestStatus from "../../models/TestStatus";
+import testManagerApi from "../../api/TestManagerApi";
 import "./StatusDropDown.css"
 import {Button, Dropdown} from "antd";
 import {DownOutlined} from "@ant-design/icons";
-import StatusMenu from "./status/StatusMenu";
+import StatusMenu from "./StatusMenu";
 
 interface StatusDropDownProps {
     currentStatus: string;

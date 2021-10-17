@@ -2,8 +2,8 @@ import renderer from "react-test-renderer";
 import {render, screen} from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import StatusDropdown from "./StatusDropdown";
-import "../jestGlobalMocks"
-import testManagerApi from "../api/TestManagerApi";
+import "../../jestGlobalMocks"
+import testManagerApi from "../../api/TestManagerApi";
 
 describe("StatusDropDown component", () => {
 

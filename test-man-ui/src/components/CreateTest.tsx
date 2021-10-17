@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import TestDetail from "../models/TestDetail";
-import StatusDropdown from "./StatusDropdown";
+import StatusDropdown from "./status/StatusDropdown";
 import TestStatus from "../models/TestStatus";
 import testManagerApi from "../api/TestManagerApi";
 import {Alert, Button, Form, Input} from "antd";
