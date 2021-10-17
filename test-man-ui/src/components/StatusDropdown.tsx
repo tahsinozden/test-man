@@ -1,9 +1,10 @@
-import React, {ReactElement, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import TestStatus from "../models/TestStatus";
 import testManagerApi from "../api/TestManagerApi";
 import "./StatusDropDown.css"
-import {Button, Dropdown, Menu} from "antd";
+import {Button, Dropdown} from "antd";
 import {DownOutlined} from "@ant-design/icons";
+import StatusMenu from "./status/StatusMenu";
 
 interface StatusDropDownProps {
     currentStatus: string;
@@ -19,21 +20,10 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
             [TestStatus.Failed.toString(), "red"]
         ]
     );
-    const [statusMenu, setStatusMenu] = useState<ReactElement>((<></>));
 
     useEffect(() => {
         testManagerApi.getAllStatuses().then(data => setStatuses(data));
     }, []);
-
-    useEffect(() => {
-        setStatusMenu((
-            <Menu onClick={handleMenuClick}>
-                {
-                    statuses.map(el => <Menu.Item key={el}> {el} </Menu.Item>)
-                }
-            </Menu>));
-
-    }, [statuses]);
 
     useEffect(() => {
         setSelected(currentStatus);
@@ -46,7 +36,7 @@ const StatusDropdown: React.FC<StatusDropDownProps> = ({currentStatus, onStatusS
 
     return (
         <>
-            <Dropdown overlay={statusMenu}>
+            <Dropdown overlay={<StatusMenu statuses={statuses} onClick={handleMenuClick}/>}>
                 <Button type="primary" className="status-button" style={{background: colorByStatus.get(selected)}}>
                     {selected} <DownOutlined/>
                 </Button>

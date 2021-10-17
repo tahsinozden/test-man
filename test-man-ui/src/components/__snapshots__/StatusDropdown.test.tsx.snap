@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly when there is a current status "Failed" 1`] = `
+exports[`StatusDropDown component renders correctly when there is a current status "Failed" 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
   onClick={[Function]}
@@ -38,7 +38,7 @@ exports[`renders correctly when there is a current status "Failed" 1`] = `
 </button>
 `;
 
-exports[`renders correctly when there is a current status "Passed" 1`] = `
+exports[`StatusDropDown component renders correctly when there is a current status "Passed" 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
   onClick={[Function]}
@@ -76,7 +76,7 @@ exports[`renders correctly when there is a current status "Passed" 1`] = `
 </button>
 `;
 
-exports[`renders correctly when there is a current status "Undefined" 1`] = `
+exports[`StatusDropDown component renders correctly when there is a current status "Undefined" 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
   onClick={[Function]}
@@ -114,7 +114,7 @@ exports[`renders correctly when there is a current status "Undefined" 1`] = `
 </button>
 `;
 
-exports[`renders correctly when there is a current status 1`] = `
+exports[`StatusDropDown component renders correctly when there is a current status 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
   onClick={[Function]}
@@ -152,7 +152,7 @@ exports[`renders correctly when there is a current status 1`] = `
 </button>
 `;
 
-exports[`renders correctly when there is a empty status text 1`] = `
+exports[`StatusDropDown component renders correctly when there is a empty status text 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
   onClick={[Function]}

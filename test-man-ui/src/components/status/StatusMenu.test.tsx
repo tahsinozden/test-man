@@ -1,20 +1,20 @@
-import testManagerApi from "../../api/TestManagerApi";
 import StatusMenu from "./StatusMenu";
 import {render, screen} from "@testing-library/react";
 
 describe('StatusMenu component', () => {
-    it('renders when statuses are fetched from API', async () => {
-        testManagerApi.getAllStatuses = jest.fn();
-        testManagerApi.getAllStatuses.mockResolvedValueOnce(
-            [
-                "Passed",
-                "Failed",
-                "Undefined"
-            ]
-        );
+    it('renders when statuses are passed from props', async () => {
+        // given
+        const statuses = [
+            "Passed",
+            "Failed",
+            "Undefined"
+        ];
+        const onClick = jest.fn();
 
-        render(<StatusMenu />);
+        // when
+        render(<StatusMenu statuses={statuses} onClick={onClick}/>);
 
+        // then
         const listItemElements = await screen.findAllByRole('menuitem');
         expect(listItemElements).toHaveLength(3);
 
