@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly when there are no tests 1`] = `
+exports[`TestPreviewList component renders correctly when there are no tests 1`] = `
 <section
   className="ant-layout"
 />
 `;
 
-exports[`renders correctly when there are some tests 1`] = `
+exports[`TestPreviewList component renders correctly when there are some tests 1`] = `
 <section
   className="ant-layout"
 />
