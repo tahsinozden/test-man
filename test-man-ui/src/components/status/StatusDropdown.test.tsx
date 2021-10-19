@@ -80,19 +80,5 @@ describe("StatusDropDown component", () => {
         expect(menuItems[1]).toHaveTextContent("Failed");
         expect(menuItems[2]).toHaveTextContent("Undefined");
     });
-
-    xit('renders statuses correctly from API when user clicks on status', async () => {
-        // given
-
-        const component = renderer.create(<StatusDropdown currentStatus={"Failed"} onStatusSelect={() => {
-        }}/>);
-        const tree = component.toJSON();
-
-        // when
-        userEvent.click(component.root.findByText("Failed"))
-
-        // then
-        expect(tree).toMatchSnapshot();
-    });
 });
 
