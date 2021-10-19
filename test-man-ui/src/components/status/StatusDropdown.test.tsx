@@ -7,6 +7,17 @@ import testManagerApi from "../../api/TestManagerApi";
 
 describe("StatusDropDown component", () => {
 
+    beforeEach(() => {
+        testManagerApi.getAllStatuses = jest.fn();
+        testManagerApi.getAllStatuses.mockResolvedValueOnce(
+            [
+                "Passed",
+                "Failed",
+                "Undefined"
+            ]
+        );
+    })
+
     it('renders correctly when there is a current status', () => {
         const tree = renderer
             .create(<StatusDropdown currentStatus={"Passed"}
@@ -54,14 +65,7 @@ describe("StatusDropDown component", () => {
 
     it('shows available status from API when user clicks on status', async () => {
         // given
-        testManagerApi.getAllStatuses = jest.fn();
-        testManagerApi.getAllStatuses.mockResolvedValueOnce(
-            [
-                "Passed",
-                "Failed",
-                "Undefined"
-            ]
-        );
+
         render(<StatusDropdown currentStatus={"Failed"} onStatusSelect={() => {
         }}/>);
 
@@ -79,14 +83,7 @@ describe("StatusDropDown component", () => {
 
     xit('renders statuses correctly from API when user clicks on status', async () => {
         // given
-        testManagerApi.getAllStatuses = jest.fn();
-        testManagerApi.getAllStatuses.mockResolvedValueOnce(
-            [
-                "Passed",
-                "Failed",
-                "Undefined"
-            ]
-        );
+
         const component = renderer.create(<StatusDropdown currentStatus={"Failed"} onStatusSelect={() => {
         }}/>);
         const tree = component.toJSON();
