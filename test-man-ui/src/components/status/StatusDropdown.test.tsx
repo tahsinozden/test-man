@@ -80,5 +80,15 @@ describe("StatusDropDown component", () => {
         expect(menuItems[1]).toHaveTextContent("Failed");
         expect(menuItems[2]).toHaveTextContent("Undefined");
     });
+
+    it('renders status color correctly when "Passed" is chosen', async () => {
+        // given
+
+        // when, then
+        render(<StatusDropdown currentStatus={"Passed"} onStatusSelect={() => {
+        }}/>);
+        const button = await screen.findByTestId("current-status-button");
+        expect(button).toHaveTextContent("Passed");
+    });
 });
 

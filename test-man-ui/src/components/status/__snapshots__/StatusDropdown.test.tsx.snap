@@ -3,6 +3,7 @@
 exports[`StatusDropDown component renders correctly when there is a current status "Failed" 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
+  data-testid="current-status-button"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
@@ -41,6 +42,7 @@ exports[`StatusDropDown component renders correctly when there is a current stat
 exports[`StatusDropDown component renders correctly when there is a current status "Passed" 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
+  data-testid="current-status-button"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
@@ -79,6 +81,7 @@ exports[`StatusDropDown component renders correctly when there is a current stat
 exports[`StatusDropDown component renders correctly when there is a current status "Undefined" 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
+  data-testid="current-status-button"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
@@ -117,6 +120,7 @@ exports[`StatusDropDown component renders correctly when there is a current stat
 exports[`StatusDropDown component renders correctly when there is a current status 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
+  data-testid="current-status-button"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
@@ -155,6 +159,7 @@ exports[`StatusDropDown component renders correctly when there is a current stat
 exports[`StatusDropDown component renders correctly when there is a empty status text 1`] = `
 <button
   className="ant-btn ant-btn-primary ant-dropdown-trigger status-button"
+  data-testid="current-status-button"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
