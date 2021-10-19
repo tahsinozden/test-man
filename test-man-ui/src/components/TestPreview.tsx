@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import TestDetail from "../models/TestDetail";
-import StatusDropdown from "./StatusDropdown";
+import StatusDropdown from "./status/StatusDropdown";
 import TestStatus from "../models/TestStatus";
 import {Content} from "antd/lib/layout/layout";
 import {Col, Row} from "antd";
