@@ -10,16 +10,10 @@ interface TestPreviewListProps {
 }
 
 const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDataChange}: TestPreviewListProps) => {
-    const [details, setDetails] = useState<any>([]);
-    let items: any[] = [];
+    const [details, setDetails] = useState<TestDetail[]>([]);
 
     useEffect(() => {
-        for (let i in testDetails) {
-            items.push(
-                <TestPreview key={i} testDetail={testDetails[i]} onStatusSelect={updateTestStatus}/>
-            )
-            setDetails(items);
-        }
+        setDetails(testDetails);
     }, [testDetails]);
 
     const updateTestStatus = (testDetail: TestDetail, newStatus: string) => {
@@ -34,7 +28,11 @@ const TestPreviewList: React.FC<TestPreviewListProps> = ({testDetails, onTestDat
 
     return (
         <Layout>
-            {details}
+            {
+                details.map((detail, i) =>
+                    <TestPreview key={i} testDetail={detail}
+                                 onStatusSelect={updateTestStatus}/>)
+            }
         </Layout>
     );
 }
